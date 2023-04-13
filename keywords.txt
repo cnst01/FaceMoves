@@ -1,0 +1,5 @@
+FaceMoves KEYWORD1
+ move_eyes_in_x KEYWORD2
+ move_eyes_in_y KEYWORD2
+ move_left_eyelid KEYWORD2
+ move_right_eyelid KEYWORD2
