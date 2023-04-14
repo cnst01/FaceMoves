@@ -14,24 +14,37 @@ FaceMoves::FaceMoves(int pin_x_eyes, int pin_y_eyes, int pin_left_eyelid, int pi
 }
 //pos is a value between -100 and 100 
 int move_eyes_in_x(int pos){
+    //10 a 50
+    if(pos<-100 || pos>100){
+        return -1;
+    }
     int move_value = round(pos/5 + 30);
     SX.write(move_value);
     return 1;
 }
 
 int move_eyes_in_y(int pos){
+    if(pos<-100 || pos>100){
+        return -1;
+    }
     int move_value = round(pos/5 + 30);
     SY.write(move_value);
     return 1;
 }
 
 int move_left_eyelid(int pos){
+    if(pos<-100 || pos>100){
+        return -1;
+    }
     int move_value = round(pos/5 + 30);
     SL.write(move_value);
     return 1;
 }
 
 int move_right_eyelid(int pos){
+    if(pos<-100 || pos>100){
+        return -1;
+    }
     int move_value = round(pos/5 + 30);
     SR.write(move_value);
     return 1;
