@@ -6,6 +6,7 @@ Servo EyeY;
 Servo EsqLid;
 Servo DirLid;
 Servo EsqEyeBrown;
+
 void setup() {
   // put your setup code here, to run once:
   EyeX.attach(3);
@@ -18,11 +19,33 @@ void setup() {
   EsqLid.write(15);
   DirLid.write(40);
 }
+
+/*
+eixo y dos olhos varia de 40 a 100
+eixo x 1 a 60
+esq fechado = 40 aberto = 15
+dir fechado = 1 aberto = 40
+
+*/
+
+void facemoves(int l, int r, int x, int y){
+  l = int(((l-100)*7/20) + 15);
+  r = int(r*2/5);
+  x = int(x*3/5);
+  y = int(y*3/5) + 40;
+  EyeX.write(l);
+  EyeY.write(r);
+  EsqLid.write(x);
+  DirLid.write(y);
+}
+
 void move_to_default(){
-  EyeX.write(30);
-  EyeY.write(50);
-  EsqLid.write(15);
-  DirLid.write(40);
+  Serial.println("default");
+  facemoves(1,1,50,0);
+  // EyeX.write(30);
+  // EyeY.write(50);
+  // EsqLid.write(15);
+  // DirLid.write(40);
 }
 
 void blink(int e){
@@ -54,9 +77,6 @@ void look_down(){
   EyeY.write(25);
 }
 
-
-
-
 void loop() {
   while(Serial.available() != 0){}
   String move = Serial.readString();
@@ -82,10 +102,4 @@ void loop() {
 }
 
 
-/*
-eixo y dos olhos varia de 40 a 100
-eixo x 1 a 60
-esq fechado = 1 aberto = 40
-dir fechado = 50 aberto = 1
 
-*/
